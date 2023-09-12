@@ -110,3 +110,9 @@ async function performSearch() {
     displayMeals(meals);
   }
 }
+
+// Perfor a chicken search on page load
+window.addEventListener('load', ()=>{
+    searchInput.value = 'chicken'
+    performSearch()
+})
