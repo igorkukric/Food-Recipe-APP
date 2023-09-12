@@ -1,8 +1,8 @@
 const searchInput = document.getElementById("searchInput");
 const searchButton = document.getElementById("searchButton");
 const mealList = document.getElementById("mealList");
-const modalContainer = document.querySelector(".modalContainer");
-const mealDetailsContent = document.querySelector("meal-details-content");
+const modalContainer = document.querySelector(".modal-container");
+const mealDetailsContent = document.querySelector(".meal-details-content");
 const recipeCloseBtn = document.getElementById("recipeCloseBtn");
 
 // Event Listeners
@@ -15,7 +15,7 @@ searchButton.addEventListener("click", async () => {
 });
 
 mealList.addEventListener("click", async (e) => {
-  const card = e.target.closest("meal-item");
+  const card = e.target.closest(".meal-item");
   if (card) {
     const mealId = card.dataset.id;
     const meal = await getMealDetails(mealId);
@@ -42,7 +42,7 @@ async function searchMealsByIngredient(ingredient) {
 async function getMealDetails(mealId) {
   try {
     const response = await fetch(
-      `https://www.themealdb.com/api/json/v1/1/filter.php?i=${mealId}`
+      `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`
     );
     const data = await response.json();
     return data.meals[0];
