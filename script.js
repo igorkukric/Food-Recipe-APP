@@ -89,3 +89,24 @@ function showMealDetailsPopup(meal) {
     `;
   modalContainer.style.display = "block";
 }
+
+// Event listener for popup close button
+recipeCloseBtn.addEventListener("click", closeRecipeModal);
+
+function closeRecipeModal() {
+  modalContainer.style.display = "none";
+}
+
+searchInput.addEventListener("keyup", (e) => {
+  if (e.key === "Enter") {
+    performSearch();
+  }
+});
+
+async function performSearch() {
+  const ingredient = searchInput.value.trim();
+  if (ingredient) {
+    const meals = await searchMealsByIngredient(ingredient);
+    displayMeals(meals);
+  }
+}
